@@ -9,8 +9,6 @@ pipeline {
            }
        }
 
-   
-
        stage('Load Image to Minikube') {
            steps {
                bat '"C:\\Program Files\\Kubernetes\\Minikube\\minikube.exe" image load flask-cicd-app:latest'
