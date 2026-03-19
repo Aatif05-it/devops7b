@@ -9,16 +9,22 @@ pipeline {
            }
        }
 
-      stage('Load Image to Minikube') {
-    steps {
-        bat '"C:\\Program Files\\Kubernetes\\Minikube\\minikube.exe" image load flask-cicd-app:latest'
-    }
-}
+       stage('Start Minikube') {
+           steps {
+               bat '"C:\\Program Files\\Kubernetes\\Minikube\\minikube.exe" start'
+           }
+       }
+
+       stage('Load Image to Minikube') {
+           steps {
+               bat '"C:\\Program Files\\Kubernetes\\Minikube\\minikube.exe" image load flask-cicd-app:latest'
+           }
+       }
 
        stage('Deploy to Kubernetes') {
            steps {
-               bat '"C:\\Program Files\\Kubernetes\\kubectl.exe" apply -f deployment.yaml'
-               bat '"C:\\Program Files\\Kubernetes\\kubectl.exe" apply -f service.yaml'
+               bat 'kubectl apply -f deployment.yaml'
+               bat 'kubectl apply -f service.yaml'
            }
        }
    }
