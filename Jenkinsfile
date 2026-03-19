@@ -9,11 +9,7 @@ pipeline {
            }
        }
 
-       stage('Start Minikube') {
-           steps {
-               bat '"C:\\Program Files\\Kubernetes\\Minikube\\minikube.exe" start'
-           }
-       }
+   
 
        stage('Load Image to Minikube') {
            steps {
