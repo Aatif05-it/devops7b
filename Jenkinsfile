@@ -3,28 +3,22 @@ pipeline {
 
    stages {
 
-       stage('Clone Code') {
-           steps {
-               git branch: 'main', url: 'https://github.com/Aatif05-it/devops7b'
-           }
-       }
-
        stage('Build Docker Image') {
            steps {
-               bat 'docker build -t flask-cicd-app:latest .'
+               bat '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe" build -t flask-cicd-app:latest .'
            }
        }
 
        stage('Load Image to Minikube') {
            steps {
-               bat 'minikube image load flask-cicd-app:latest'
+               bat '"C:\\Program Files\\Minikube\\minikube.exe" image load flask-cicd-app:latest'
            }
        }
 
        stage('Deploy to Kubernetes') {
            steps {
-               bat 'kubectl apply -f deployment.yaml'
-               bat 'kubectl apply -f service.yaml'
+               bat '"C:\\Program Files\\Kubernetes\\kubectl.exe" apply -f deployment.yaml'
+               bat '"C:\\Program Files\\Kubernetes\\kubectl.exe" apply -f service.yaml'
            }
        }
    }
